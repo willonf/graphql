@@ -1,4 +1,5 @@
 # Scalar types
+
 ```
 
 import { ApolloServer, gql } from 'apollo-server';
