@@ -2,8 +2,8 @@ import {gql} from 'apollo-server'
 
 export const userTypeDefs = gql`
     extend type Query {
-        user(id: ID!): User! # O '!' indica que o parâmetro é obrigatório
-        users: [User!]!
+        user(id: ID!, teste: Boolean): User! # O '!' indica que o parâmetro é obrigatório
+        users(input: FiltersInput): [User!]!
     }
 
     type User {

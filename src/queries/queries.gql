@@ -28,3 +28,68 @@ query get {
     userName
   }
 }
+
+# Query variables em queries dinâmicas
+query get_user_by_id ($id: ID! = "812") {  # "812" é um valor padrão
+    user (id: $id) {
+        id
+        userName
+        firstName
+        lastName
+    }
+}
+
+query get_user_by_id ($id: ID!) { # Sem valor padrão
+    user (id: $id) {
+        id
+        userName
+        firstName
+        lastName
+    }
+}
+
+query get_user_by_id ($id: ID!, $teste: Boolean) {
+    user (id: $id, teste: $teste) {
+        id
+        userName
+        firstName
+        lastName
+    }
+}
+
+
+# Alias de queries
+query get {
+    post860:post(id:860){
+        postId:id
+        id
+        title
+    }
+    post(id:940){
+        id
+        title
+    }
+}
+
+
+# Queries fragments. Se declarado, o uso é obrigatório
+fragment postFragment on Post {
+    id
+    title
+    body
+}
+
+query get {
+    post1: post(id:860){
+        ...postFragment
+        unixTimestamp
+    }
+    post2: post(id:940){
+        ...postFragment
+        createdAt
+    }
+    post3: post(id:342){
+        ...postFragment
+        indexRef
+    }
+}
