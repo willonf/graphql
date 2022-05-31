@@ -1,0 +1,30 @@
+query nome_da_query {
+  fields
+}
+
+query get {
+  hello
+  id
+  age
+  average
+  isMarried
+  isAlive
+  arrayString
+  arrayStringNull
+}
+
+# Em queries de custom types, é obrigatório especificar os campos desejados
+query get_user {
+  user{
+    id
+    __typename # Type
+  }
+}
+
+# Query com passagem de parâmetros
+
+query get {
+  user(id: "2") {
+    userName
+  }
+}
