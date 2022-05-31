@@ -1,26 +1,23 @@
-const post = () => {
-  return {
-    id: '1',
-    title: 'GraphQL vs. Rest',
-  };
+import axios from "axios";
+
+const post = (parent: any, arg: any, context: any, info: any) => {
+    const id = "2"
+    const URL = 'http://localhost:3000/posts/'.concat(id).concat("/");
+    return axios.get(URL, {headers: {Accept: 'application/json'}})
 };
 
-const posts = () => {
-  return [
-    {
-      id: '1',
-      title: 'GraphQL vs. Rest',
-    },
-    {
-      id: '2',
-      title: 'PostgreSQL vs. MySQL',
-    },
-  ];
+const posts = async (parent: any, arg: any, context: any, info: any) => {
+    const URL = 'http://localhost:3000/posts/';
+    const {data, status} = await axios.get(URL, {
+        headers: {Accept: 'application/json'},
+    });
+
+    return data;
 };
 
 export const postResolvers = {
-  Query: {
-    post,
-    posts,
-  },
+    Query: {
+        post,
+        posts,
+    },
 };
