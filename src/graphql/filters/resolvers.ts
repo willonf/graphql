@@ -1,8 +1,8 @@
 import { gql } from "apollo-server";
 
-export const filtersTypeDefs  = gql`
+export const apiFiltersTypeDefs  = gql`
     # Inputs são argumentos
-    input FiltersInput {
+    input apiFiltersInput {
         _sort: String
         _order: String
         _start: Int

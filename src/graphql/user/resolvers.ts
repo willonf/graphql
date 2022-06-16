@@ -10,8 +10,9 @@ const user = async (parent: any, arg: any, context: any, info: any) => {
     return response.data
 }
 
-const users = async (parent: any, arg: any, {isAccessing}: any, ___: any) => {
-    const URL = 'http://localhost:3000/users'
+const users = async (parent: any, {filters}: any, {isAccessing}: any, ___: any) => {
+    const apiFiltersInput = new URLSearchParams(filters);
+    const URL = 'http://localhost:3000/users/' + '?' + apiFiltersInput
     const {data, status} = await axios.get(URL, {
         headers: {
             Accept: 'application/json',

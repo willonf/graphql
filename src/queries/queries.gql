@@ -72,7 +72,7 @@ query get {
 }
 
 
-# Queries fragments. Se declarado, o uso é obrigatório
+# Queries fragments
 fragment postFragment on Post {
     id
     title
@@ -93,3 +93,28 @@ query get {
         indexRef
     }
 }
+
+# "Filtros"
+query get_posts{
+  posts (filters:{
+    _sort: "indexRef"
+    _order: "desc"
+    _start: 0
+    _limit: 5
+  }) {
+    indexRef
+  }
+}
+
+query get_users($sort: String = "id") {
+  users(filters: {
+    _sort: $sort
+    _order: "asc"
+
+  }) {
+    id
+    userName
+  }
+}
+
+
