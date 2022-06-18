@@ -117,4 +117,22 @@ query get_users($sort: String = "id") {
   }
 }
 
+# Utilizando enum (linha 129)
+query get_users(
+  $sort: String = "indexRef"
+  $order: ApiFilterOrder = DESC
+  $start: Int = 0
+  $end: Int = 5
+  ) {
+  users(filters: {
+    _sort: $sort
+    _order: DESC
+    _start: $start
+    _limit: $limit
+  }) {
+    id
+    userName
+  }
+}
+
 
